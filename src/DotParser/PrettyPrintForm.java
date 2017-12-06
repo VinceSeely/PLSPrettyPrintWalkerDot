@@ -77,7 +77,11 @@ public class PrettyPrintForm extends javax.swing.JFrame {
         String dotCode = DotCodeView.getText();
         DOTLexer lexer = new DOTLexer(new ANTLRInputStream(dotCode));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
-        DOTParser = new DOTParser(tokens);
+        DOTParser parser = new DOTParser(tokens);
+        parser.;
+        DotCodeView.setText(dotCode;)
+        //https://stackoverflow.com/questions/19350705/how-do-i-pretty-print-productions-and-line-numbers-using-antlr4
+        //do something with the above idea in mind
     }//GEN-LAST:event_beautifyButtonActionPerformed
 
     /**
