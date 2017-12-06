@@ -5,6 +5,9 @@
  */
 package DotParser;
 
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+
 /**
  *
  * @author seelyv
@@ -27,21 +30,55 @@ public class PrettyPrintForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        beautifyButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        DotCodeView = new javax.swing.JTextArea();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        beautifyButton.setText("Beautify");
+        beautifyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                beautifyButtonActionPerformed(evt);
+            }
+        });
+
+        DotCodeView.setColumns(20);
+        DotCodeView.setRows(5);
+        DotCodeView.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(DotCodeView);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(beautifyButton)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(beautifyButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void beautifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beautifyButtonActionPerformed
+        // TODO add your handling code here:
+        String dotCode = DotCodeView.getText();
+        DOTLexer lexer = new DOTLexer(new ANTLRInputStream(dotCode));
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        DOTParser = new DOTParser(tokens);
+    }//GEN-LAST:event_beautifyButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +116,8 @@ public class PrettyPrintForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea DotCodeView;
+    private javax.swing.JButton beautifyButton;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
